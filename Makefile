@@ -64,10 +64,11 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 SRC         = push_swap.c \
               parsing.c \
               sort.c \
-              mouvements/op_push.c \
+	          mouvements/op_push.c \
               mouvements/op_reverse.c \
-              mouvements/op_rotate.c \
-              mouvements/op_swap.c
+        	  mouvements/op_rotate.c \
+              mouvements/op_swap.c \
+			  mini_sort.c
 
 OBJ         = $(SRC:.c=.o)
 

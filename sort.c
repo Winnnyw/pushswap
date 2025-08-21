@@ -6,7 +6,7 @@
 /*   By: rokilic <rokilic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:21 by rokilic           #+#    #+#             */
-/*   Updated: 2025/08/21 17:51:15 by rokilic          ###   ########.fr       */
+/*   Updated: 2025/08/21 20:43:05 by rokilic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,19 @@ bool	is_sorted(t_list *stack_a)
 		stack_a = stack_a->next;
 	}
 	return (true);
+}
+
+void	sort(t_list **stack_a, t_list **stack_b)
+{
+	int	i;
+
+	i = ft_lstsize(*stack_a);
+	if (i == 2)
+		sa(stack_a);
+	else if (i == 3)
+		sort_3(stack_a);
+	else if (i <= 5)
+		sort_5(stack_a, stack_b);
+	else
+		radix(stack_a, stack_b);
 }

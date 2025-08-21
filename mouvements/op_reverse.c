@@ -6,73 +6,43 @@
 /*   By: rokilic <rokilic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:43:25 by rokilic           #+#    #+#             */
-/*   Updated: 2025/08/15 19:15:30 by rokilic          ###   ########.fr       */
+/*   Updated: 2025/08/21 18:43:51 by rokilic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(t_list **stack_a)
+void	reverse_rotate(t_list **stack)
 {
-	t_list	*node;
-	t_list	*temp;
+	t_list	*prev;
+	t_list	*last;
 
-	node = *stack_a;
-	temp = *stack_a;
-	while (node->next->next != NULL)
-		node = node->next;
-	*stack_a = node->next;
-	node->next = NULL;
-	(*stack_a)->next = temp;
-	write(1, "rra\n", 4);
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	prev = *stack;
+	while (prev->next->next != NULL)
+		prev = prev->next;
+	last = prev->next;
+	prev->next = NULL;
+	last->next = *stack;
+	*stack = last;
 }
 
-void	rra_silent(t_list **stack_a)
+void	rra(t_list **stack_a)
 {
-	t_list	*node;
-	t_list	*temp;
-
-	node = *stack_a;
-	temp = *stack_a;
-	while (node->next->next != NULL)
-		node = node->next;
-	*stack_a = node->next;
-	node->next = NULL;
-	(*stack_a)->next = temp;
+	reverse_rotate(stack_a);
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_list **stack_b)
 {
-	t_list	*node;
-	t_list	*temp;
-
-	node = *stack_b;
-	temp = *stack_b;
-	while (node->next->next != NULL)
-		node = node->next;
-	*stack_b = node->next;
-	node->next = NULL;
-	(*stack_b)->next = temp;
+	reverse_rotate(stack_b);
 	write(1, "rrb\n", 4);
-}
-
-void	rrb_silent(t_list **stack_b)
-{
-	t_list	*node;
-	t_list	*temp;
-
-	node = *stack_b;
-	temp = *stack_b;
-	while (node->next->next != NULL)
-		node = node->next;
-	*stack_b = node->next;
-	node->next = NULL;
-	(*stack_b)->next = temp;
 }
 
 void	rrr(t_list **stack_a, t_list **stack_b)
 {
-	rra_silent(stack_a);
-	rrb_silent(stack_b);
+	reverse_rotate(stack_a);
+	reverse_rotate(stack_b);
 	write(1, "rrr\n", 4);
 }

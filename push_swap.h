@@ -6,7 +6,7 @@
 /*   By: rokilic <rokilic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:13:18 by rokilic           #+#    #+#             */
-/*   Updated: 2025/08/20 20:10:14 by rokilic          ###   ########.fr       */
+/*   Updated: 2025/08/21 18:43:15 by rokilic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,5 @@ void	fterror(void);
 bool	get_bit(int number, int index);
 void	radix(t_list **stack_a, t_list **stack_b);
 bool	is_sorted(t_list *stack_a);
-
-
 
 #endif

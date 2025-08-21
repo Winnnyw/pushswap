@@ -6,7 +6,7 @@
 /*   By: rokilic <rokilic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:39:59 by rokilic           #+#    #+#             */
-/*   Updated: 2025/08/20 18:20:21 by rokilic          ###   ########.fr       */
+/*   Updated: 2025/08/21 18:44:24 by rokilic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,18 @@ bool	parse_args(char **av, t_list **stack_a)
 		if (n == NULL)
 			return (false);
 		if (safe_atoi(av[i], n) == false)
-			return (false);
+			return (free(n), false);
 		if (check_double(*stack_a, *n) == true)
-			return (false);
+			return (free(n), false);
 		tmp = ft_lstnew((void *)n);
+		if (!tmp)
+			return (free(n), false);
 		ft_lstadd_back(stack_a, tmp);
 		i++;
 	}
 	return (true);
 }
 
-/* 
 void	print_stack(t_list *stack)
 {
 	t_list	*tmp;
@@ -86,4 +87,4 @@ void	print_stack(t_list *stack)
 		printf("%d\n", *(int *)(tmp->content));
 		tmp = tmp->next;
 	}
-} */
+}

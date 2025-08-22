@@ -6,7 +6,7 @@
 /*   By: rokilic <rokilic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:13:18 by rokilic           #+#    #+#             */
-/*   Updated: 2025/08/21 21:19:13 by rokilic          ###   ########.fr       */
+/*   Updated: 2025/08/22 18:38:40 by rokilic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	rrr(t_list **stack_a, t_list **stack_b);
 bool	parse_args(char **av, t_list **stack_a);
 void	print_stack(t_list *stack);
 void	fterror(void);
+void	compute_index(t_list *stack_a);
 
 // algo
 bool	get_bit(int number, int index);
@@ -54,6 +55,10 @@ void	sort_5(t_list **stack_a, t_list **stack_b);
 int		find_min_position(t_list *head);
 
 
-
+typedef struct s_node
+{
+	int	index;
+	int	n;
+}		t_node;
 
 #endif

@@ -6,11 +6,34 @@
 /*   By: rokilic <rokilic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:39:59 by rokilic           #+#    #+#             */
-/*   Updated: 2025/08/21 18:44:24 by rokilic          ###   ########.fr       */
+/*   Updated: 2025/08/22 18:38:08 by rokilic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	compute_index(t_list *stack_a)
+{
+	t_list	*current;
+	t_list	*compare;
+	int		index;
+
+	current = stack_a;
+	while (current)
+	{
+		index = 0;
+		compare = stack_a;
+		while (compare)
+		{
+			if (((t_node *)compare->content)->n < \
+				((t_node *)current->content)->n)
+				index++;
+			compare = compare->next;
+		}
+		((t_node *)current->content)->index = index;
+		current = current->next;
+	}
+}
 
 static bool	safe_atoi(char *str, int *out)
 {
@@ -45,7 +68,7 @@ static bool	check_double(t_list *stack, int value)
 {
 	while (stack)
 	{
-		if (*(int *)stack->content == value)
+		if (((t_node *)stack->content)->n == value)
 			return (true);
 		stack = stack->next;
 	}
@@ -55,36 +78,36 @@ static bool	check_double(t_list *stack, int value)
 bool	parse_args(char **av, t_list **stack_a)
 {
 	int		i;
-	int		*n;
+	t_node	*node;
 	t_list	*tmp;
 
 	i = 0;
 	while (av[i])
 	{
-		n = malloc(sizeof(int));
-		if (n == NULL)
+		node = malloc(sizeof(t_node));
+		if (node == NULL)
 			return (false);
-		if (safe_atoi(av[i], n) == false)
-			return (free(n), false);
-		if (check_double(*stack_a, *n) == true)
-			return (free(n), false);
-		tmp = ft_lstnew((void *)n);
+		if (safe_atoi(av[i], &node->n) == false)
+			return (free(node), false);
+		if (check_double(*stack_a, node->n) == true)
+			return (free(node), false);
+		tmp = ft_lstnew((void *)node);
 		if (!tmp)
-			return (free(n), false);
+			return (free(node), false);
 		ft_lstadd_back(stack_a, tmp);
 		i++;
 	}
 	return (true);
 }
 
-void	print_stack(t_list *stack)
-{
-	t_list	*tmp;
+// void	print_stack(t_list *stack)
+// {
+// 	t_list	*tmp;
 
-	tmp = stack;
-	while (tmp)
-	{
-		printf("%d\n", *(int *)(tmp->content));
-		tmp = tmp->next;
-	}
-}
+// 	tmp = stack;
+// 	while (tmp)
+// 	{
+// 		printf("%d\n", ((t_node *)(tmp->content))->n);
+// 		tmp = tmp->next;
+// 	}
+// }

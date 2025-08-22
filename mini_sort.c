@@ -6,7 +6,7 @@
 /*   By: rokilic <rokilic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 20:33:28 by rokilic           #+#    #+#             */
-/*   Updated: 2025/08/21 21:31:30 by rokilic          ###   ########.fr       */
+/*   Updated: 2025/08/22 18:23:26 by rokilic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	sort_3(t_list **stack_a)
 	int	y;
 	int	z;
 
-	x = *(int *)(*stack_a)->content;
-	y = *(int *)(*stack_a)->next->content;
-	z = *(int *)(*stack_a)->next->next->content;
+	x = ((t_node *)(*stack_a)->content)->n;
+	y = ((t_node *)(*stack_a)->next->content)->n;
+	z = ((t_node *)(*stack_a)->next->next->content)->n;
 	if (is_sorted(*stack_a))
 		return ;
 	if (x > y && y < z && x < z)
@@ -73,13 +73,13 @@ int	find_min_position(t_list *head)
 
 	if (!head)
 		return (-1);
-	min_val = *(int *)head->content;
+	min_val = ((t_node *)head->content)->n;
 	position = 0;
 	current_pos = 0;
 	current = head;
 	while (current)
 	{
-		if (*(int *)current->content < min_val)
+		if (((t_node *)current->content)->n < min_val)
 		{
 			min_val = *(int *)current->content;
 			position = current_pos;

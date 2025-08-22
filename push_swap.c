@@ -6,7 +6,7 @@
 /*   By: rokilic <rokilic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:08:51 by rokilic           #+#    #+#             */
-/*   Updated: 2025/08/21 21:20:13 by rokilic          ###   ########.fr       */
+/*   Updated: 2025/08/22 18:38:58 by rokilic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	main(int ac, char **av)
 		return (fterror(), 1);
 	if (parse_args(&av[1], &stack_a) == false)
 		return (ft_lstclear(&stack_a, free_stack), fterror(), 1);
+	compute_index(stack_a);
 	sort(&stack_a, &stack_b);
-	print_stack(stack_a);
 	ft_lstclear(&stack_a, free_stack);
 	return (0);
 }

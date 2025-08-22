@@ -6,7 +6,7 @@
 /*   By: rokilic <rokilic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:24:21 by rokilic           #+#    #+#             */
-/*   Updated: 2025/08/21 20:43:05 by rokilic          ###   ########.fr       */
+/*   Updated: 2025/08/22 18:39:51 by rokilic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	radix(t_list **stack_a, t_list **stack_b)
 		size = ft_lstsize(*stack_a);
 		while (j < size)
 		{
-			if (get_bit(*(int *)((*stack_a)->content), i))
+			if (get_bit(((t_node *)(*stack_a)->content)->index, i))
 				ra(stack_a);
 			else
 				pb(stack_a, stack_b);
@@ -48,7 +48,8 @@ bool	is_sorted(t_list *stack_a)
 {
 	while (stack_a->next != NULL)
 	{
-		if (*(int *)stack_a->content > *(int *)stack_a->next->content)
+		if (((t_node *)stack_a->content)->n > \
+			((t_node *)stack_a->next->content)->n)
 			return (false);
 		stack_a = stack_a->next;
 	}
